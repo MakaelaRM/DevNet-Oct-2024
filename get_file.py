@@ -8,11 +8,12 @@ from googleapiclient.http import MediaIoBaseDownload
 
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
 
-# gets credentials
+
 def authenticate():
 
     creds = None
 
+    #gets credentials
     if os.path.exists('token.json'):
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
     if not creds or not creds.valid:
@@ -26,7 +27,7 @@ def authenticate():
             token.write(creds.to_json())
     return creds
 
-# creates drive api client
+
 def build_api():
 
     # credentials
@@ -36,19 +37,26 @@ def build_api():
     service = build('drive', 'v3', credentials=temp_creds)
     return service
 
-#downloads file
+
 def download_csv(file_id, destination):
 
     # creates drive api client
     service = build_api()
 
-    # gets file from Google drive
-    request = service.files().get_media(fileId=file_id)
-
-    # downloads file from Google dive
     try:
-        fh = io.FileIO(destination, 'wb')
+        # gets file from Google drive
+        request = service.files().get_media(fileId=file_id)
+        # open the local file in binary write mode
+        with io.FileIO(destination, 'wb') as fh:
+            # initialize MediaIoBaseDownload with the file handle and request
+            downloader = MediaIoBaseDownload(fh, request)
+            done = False
+
+            # loops through each chunk and download the file until completed
+            while not done:
+                done = downloader.next_chunk()
+
+        print("Download complete!")
+
     except Exception as e:
-        print(f'Failed to open file : {e}')
-        
-    downloader = MediaIoBaseDownload(fh, request)
+        print(f"Error during download: {e}")
