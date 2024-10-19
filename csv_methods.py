@@ -1,7 +1,8 @@
 import pandas as pd
 
 
-def print_file(file_name):
+def get_value(file_name, data_type):
     df = pd.read_csv(file_name)
-    
-    print(df.to_string())
+    last_value = df[data_type].iloc[-1]
+
+    return last_value
