@@ -17,18 +17,48 @@ st.set_page_config(
     initial_sidebar_state='expanded'
 )
 
-st.title('𓋼𓍊 Plant Dashboard 𓍊𓋼')
+st.title('Plant Dashboard')
+
+#sidebar
+with st.sidebar:
+    st.header("Settings")
+    
+    graph_data = st.selectbox("Select Graph",
+                                   ("pH", "EC", 'PPM', "Temprature", "Humidity"))
     
 #displays data
 st.markdown('MCR Scottsdale LLC')
 col1, col2, col3 = st.columns(3)
 col4, col5, col6 = st.columns(3)
 
-#add units?
+#values
+pH = csv_methods.get_value(csv_name, ' pH')
+temp = (f'{csv_methods.get_value(csv_name, 'Temp')} °F')
+ec = (f'{csv_methods.get_value(csv_name, 'EC')} µS/cm')
+ppm = (f'{csv_methods.get_value(csv_name, 'PPM')} ppm')
+humidity = (f'{csv_methods.get_value(csv_name, 'Humidity')} g/kg')
+
 #first input is last data entry second input gets difference between that value and second to last one
 col1.metric("Date & Time:", csv_methods.get_value(csv_name, 'date_time'))
-col2.metric("pH:", csv_methods.get_value(csv_name, ' pH'), csv_methods.get_value_diff(csv_name, ' pH'))
-col3.metric("EC:", csv_methods.get_value(csv_name, 'EC'), int(csv_methods.get_value_diff(csv_name, 'EC')))
-col4.metric("PPM:", csv_methods.get_value(csv_name, 'PPM'), int(csv_methods.get_value_diff(csv_name, 'PPM')))
-col5.metric("Temprature:", csv_methods.get_value(csv_name, 'Temp'), float(csv_methods.get_value_diff(csv_name, 'Temp')))
-col6.metric("Humidity:", csv_methods.get_value(csv_name, 'Humidity'), int(csv_methods.get_value_diff(csv_name, 'Humidity')))
+col2.metric("pH:", pH, csv_methods.get_value_diff(csv_name, ' pH'))
+col3.metric("EC:", ec, int(csv_methods.get_value_diff(csv_name, 'EC')))
+col4.metric("PPM:", ppm, int(csv_methods.get_value_diff(csv_name, 'PPM')))
+col5.metric("Temprature:", temp, float(csv_methods.get_value_diff(csv_name, 'Temp')))
+col6.metric("Humidity:", humidity, int(csv_methods.get_value_diff(csv_name, 'Humidity')))
+
+#data chart
+df = csv_methods.get_data(csv_name)
+if(graph_data == "pH"):
+    st.line_chart(data=df, x='date_time', y=' pH', x_label='Date', y_label='pH', color=None)
+    
+elif(graph_data == "EC"):
+    st.line_chart(data=df, x='date_time', y='EC', x_label='Date', y_label='EC (µS/cm)', color=None)
+
+elif(graph_data == "PPM"):
+    st.line_chart(data=df, x='date_time', y='PPM', x_label='Date', y_label='PPM', color=None)
+    
+elif(graph_data == "Temprature"):
+    st.line_chart(data=df, x='date_time', y='Temp', x_label='Date', y_label='Temprature (°F)', color=None)
+
+elif(graph_data == "Humidity"):
+    st.line_chart(data=df, x='date_time', y='Humidity', x_label='Date', y_label='Humidity (g/kg)', color=None)

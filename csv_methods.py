@@ -22,3 +22,8 @@ def get_value_diff(file_name, data_type):
     diff = round(last_value - before_value, 1)
     
     return diff
+
+def get_data(file_name):
+        df = pd.read_csv(file_name)
+        
+        return df
