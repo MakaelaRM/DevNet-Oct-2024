@@ -61,7 +61,7 @@ def download_csv(file_id, destination):
     except Exception as e:
         print(f"Error during download: {e}")
         
-# Download the most recent image in the folder
+
 def download_last_image_in_folder(folder_id, destination):
     service = build_api()
     

@@ -55,19 +55,19 @@ col6.metric("Humidity:", humidity, int(csv_methods.get_value_diff(csv_name, 'Hum
 #data graphs
 df = csv_methods.get_data(csv_name)
 if(graph_data == "pH"):
-    st.line_chart(data=df, x='date_time', y=' pH', x_label='Date', y_label='pH', color='#0BDA51')
+    st.line_chart(data=df, x='date_time', y=' pH', x_label='Date', y_label='pH')
     
 elif(graph_data == "EC"):
-    st.line_chart(data=df, x='date_time', y='EC', x_label='Date', y_label='EC (µS/cm)', color='#0BDA51')
+    st.line_chart(data=df, x='date_time', y='EC', x_label='Date', y_label='EC (µS/cm)')
 
 elif(graph_data == "PPM"):
-    st.line_chart(data=df, x='date_time', y='PPM', x_label='Date', y_label='PPM', color='#0BDA51')
+    st.line_chart(data=df, x='date_time', y='PPM', x_label='Date', y_label='PPM')
     
 elif(graph_data == "Temprature"):
-    st.line_chart(data=df, x='date_time', y='Temp', x_label='Date', y_label='Temprature (°F)', color='#0BDA51')
+    st.line_chart(data=df, x='date_time', y='Temp', x_label='Date', y_label='Temprature (°F)')
 
 elif(graph_data == "Humidity"):
-    st.line_chart(data=df, x='date_time', y='Humidity', x_label='Date', y_label='Humidity (g/kg)', color='#0BDA51')
+    st.line_chart(data=df, x='date_time', y='Humidity', x_label='Date', y_label='Humidity (g/kg)')
     
 
 #image
