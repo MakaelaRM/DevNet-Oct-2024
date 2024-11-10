@@ -64,11 +64,11 @@ elif(graph_data == "PPM"):
     st.line_chart(data=df, x='date_time', y='PPM', x_label='Date', y_label='PPM')
     
 elif(graph_data == "Temprature"):
-    st.line_chart(data=df, x='date_time', y='Temp', x_label='Date', y_label='Temprature (°F)')
+    st.line_chart(data=df, x='date_time', y='Temp', x_label='Date', y_label='Temperature (°F)')
 
 elif(graph_data == "Humidity"):
     st.line_chart(data=df, x='date_time', y='Humidity', x_label='Date', y_label='Humidity (g/kg)')
     
 
 #image
-col7 = st.image(image_name)
+#col7 = st.image(image_name)
