@@ -1,3 +1,4 @@
+from PIL import Image
 import streamlit as st
 import altair as alt
 import csv_methods
@@ -71,4 +72,4 @@ elif(graph_data == "Humidity"):
     
 
 #image
-#col7 = st.image(image_name)
+col7 = st.image(image_name)
