@@ -25,12 +25,12 @@ st.title('Plant Dashboard 🌱')
 
 #sidebar
 with st.sidebar:
-    st.header("Settings")
+    st.header("Settings ⚙️")
     
     dates = csv_methods.get_column(csv_name, 'date_time')
     
     graph_data = st.selectbox("Select Graph:",
-                                   ("pH", "EC", 'PPM', "Temprature", "Humidity"))
+                                   ("pH", "EC", 'PPM', "Temperature", "Humidity"))
     
 #displays data
 st.markdown('MCR Scottsdale LLC')
@@ -50,7 +50,7 @@ col1.metric("Date & Time:", csv_methods.get_value(csv_name, 'date_time'))
 col2.metric("pH:", pH, csv_methods.get_value_diff(csv_name, ' pH'))
 col3.metric("EC:", ec, int(csv_methods.get_value_diff(csv_name, 'EC')))
 col4.metric("PPM:", ppm, int(csv_methods.get_value_diff(csv_name, 'PPM')))
-col5.metric("Temprature:", temp, float(csv_methods.get_value_diff(csv_name, 'Temp')))
+col5.metric("Temperature:", temp, float(csv_methods.get_value_diff(csv_name, 'Temp')))
 col6.metric("Humidity:", humidity, int(csv_methods.get_value_diff(csv_name, 'Humidity')))
 
 #data graphs
@@ -64,7 +64,7 @@ elif(graph_data == "EC"):
 elif(graph_data == "PPM"):
     st.line_chart(data=df, x='date_time', y='PPM', x_label='Date', y_label='PPM')
     
-elif(graph_data == "Temprature"):
+elif(graph_data == "Temperature"):
     st.line_chart(data=df, x='date_time', y='Temp', x_label='Date', y_label='Temperature (°F)')
 
 elif(graph_data == "Humidity"):
