@@ -1,4 +1,4 @@
-DevNet Project 2 Challenge 2 (Makaela, Allison, Charli):
+(Placed first) DevNet Project 2 Challenge 2 (Makaela, Allison, Charli):
 https://github.com/MakaelaRM/DevNet-Oct-2024
 
 <img width="1440" alt="image" src="https://github.com/user-attachments/assets/1cc4994d-12ab-4862-8010-96a9e43d5e1b" />
